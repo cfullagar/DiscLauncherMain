@@ -28,6 +28,8 @@ public class RobotMap {
   public static final int discMotor = 6;
   public static final double spinSpeedVar = 0;
 
+  public static final int pushMotor = 7;
+
 
   public static final int joystickPort = 0;  //usb input port
   

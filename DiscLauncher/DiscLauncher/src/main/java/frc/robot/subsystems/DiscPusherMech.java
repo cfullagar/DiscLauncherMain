@@ -19,7 +19,13 @@ public class DiscPusherMech extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  Servo pusher = new Servo(RobotMap.servoDisc);
+
+  //if using servo use this
+  //Servo pusher = new Servo(RobotMap.servoDisc);
+
+  //DONT KNOW IF WORKS - TEST
+  //if using windshield wiper motor use this
+  PWMVictorSPX pushMotor = new PWMVictorSPX(RobotMap.pushMotor);
 
   @Override
   public void initDefaultCommand() {
@@ -29,6 +35,9 @@ public class DiscPusherMech extends Subsystem {
 
   public void pushForward(int distance)
   {
+    //need to make windsheild motor push with code below
+
+    //this is servo code
     pusher.setPosition(distance);
   }
 
