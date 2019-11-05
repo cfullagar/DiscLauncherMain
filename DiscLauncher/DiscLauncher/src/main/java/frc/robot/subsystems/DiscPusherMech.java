@@ -7,31 +7,35 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.PWMVictorSPX;
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.SpinMotor;
+import frc.robot.commands.DiscPusher;
 
 /**
  * Add your docs here.
  */
-public class DiscLauncher extends Subsystem {
+public class DiscPusherMech extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  PWMVictorSPX discMotor = new PWMVictorSPX(RobotMap.discMotor);
+  Servo pusher = new Servo(RobotMap.servoDisc);
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    setDefaultCommand(new SpinMotor());
-    
+     setDefaultCommand(new DiscPusher());
   }
 
-  public void setSpinSpeed(double speed)
+  public void pushForward(int distance)
   {
-    discMotor.set(speed);
+    pusher.setPosition(distance);
   }
 
+  public void pushBackward()
+  {
+    pusher.setPosition(0);
+  }
 
+  
 }

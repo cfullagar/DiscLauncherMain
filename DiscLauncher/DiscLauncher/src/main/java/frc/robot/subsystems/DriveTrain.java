@@ -8,7 +8,10 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.PWMVictorSPX;
+import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.RobotMap;
 import frc.robot.commands.TankDrive;
 
@@ -26,6 +29,16 @@ public class DriveTrain extends Subsystem {
   PWMVictorSPX rightMotor2 = new PWMVictorSPX(RobotMap.rightMotor2Channel);
 
 
+  //below is new code for adding arcade groups
+  SpeedControllerGroup m_right = new SpeedControllerGroup(rightMotor1, rightMotor2);
+  SpeedControllerGroup m_left = new SpeedControllerGroup(leftMotor1, leftMotor2);
+
+  //
+  DifferentialDrive m_robotDrive = new DifferentialDrive(m_left, m_right);
+
+
+
+
   
 
   @Override
@@ -34,16 +47,21 @@ public class DriveTrain extends Subsystem {
      setDefaultCommand(new TankDrive());
   }
 
-  public void setLeftMotors(double speed)
+  public void ArcadeDrive(double speed, double rotation)
   {
-    leftMotor1.set(speed);
-    leftMotor2.set(speed);
+    m_robotDrive.arcadeDrive(speed, rotation, true);
   }
 
-  public void setRightMotors(double speed)
-  {
-    rightMotor1.set(-speed);
-    rightMotor2.set(-speed);
-  }
+  // public void setLeftMotors(double speed)
+  // {
+  //   leftMotor1.set(speed);
+  //   leftMotor2.set(speed);
+  // }
+
+  // public void setRightMotors(double speed)
+  // {
+  //   rightMotor1.set(-speed);
+  //   rightMotor2.set(-speed);
+  // }
 }
 

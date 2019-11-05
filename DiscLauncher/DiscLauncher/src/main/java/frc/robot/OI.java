@@ -10,7 +10,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-//import frc.robot.commands.Move;  //currently using MoveSequence instead
+//import frc.robot.commands.DiscPusher;
+import frc.robot.commands.Move;  //currently using MoveSequence instead
 import frc.robot.commands.MoveSequence;
 import frc.robot.commands.SpinMotor;
 
@@ -25,9 +26,17 @@ public class OI {
   // You create one by telling it which joystick it's on and which button
   // number it is.
 
+  
+
   Joystick stick = new Joystick(RobotMap.joystickPort);
   Button xButton = new JoystickButton(stick, RobotMap.ButtonX);
   Button yButton = new JoystickButton(stick, RobotMap.ButtonY);
+  Button aButton = new JoystickButton(stick, RobotMap.ButtonA);
+  Button bButton = new JoystickButton(stick, RobotMap.ButtonB);
+  Button backButton = new JoystickButton(stick, RobotMap.ButtonBack);
+
+  public Button rightBumper = new JoystickButton(stick, RobotMap.RightBumper);
+  public Button leftBumper = new JoystickButton(stick, RobotMap.LeftBumper);
   
 
   public double GetDriverRawAxis(int axis)
@@ -40,9 +49,42 @@ public class OI {
 
   public OI()
   {
-    //xButton.whenPressed(new Move(5, 0.5, 0.5));
-    xButton.whenPressed(new MoveSequence());  //Test this before the new motor
-    yButton.whileHeld(new SpinMotor());
+    SpinMotor spinner = new SpinMotor();
+    //xButton.whenPressed(new Move(1, 0.5, 0));
+    //aButton.whenPressed(new MoveSequence());  //Test this before the new motor
+
+
+   // yButton.whileHeld(new SpinMotor(1));
+
+    //Frisbee Motor test buttons
+    // boolean b = spinner.getSpinState();
+    // if (b == true)
+    // {
+    //   aButton.whenPressed(new SpinMotor(0));
+    //   //spinner.setSpinState(false);
+    //   b = false;
+    // }
+    // else
+    // {
+    //   aButton.whenPressed(new SpinMotor(0.25));
+    //   //spinner.setSpinState(true);
+    //   b = true;
+    // }
+
+    aButton.whenPressed(new SpinMotor(5, 0.25));
+    aButton.cancelWhenPressed(new SpinMotor(5, 0));
+    bButton.whenPressed(new SpinMotor(5, 0.5));
+    xButton.whenPressed(new SpinMotor(5, 0.75));
+    yButton.whenPressed(new SpinMotor(5, 1));
+
+    backButton.whenPressed(new SpinMotor(5, 0));
+
+  //   rightBumper.whenPressed(new DiscPusher(120));
+  //  leftBumper.whenPressed(new DiscPusher(0));
+
+
+
+
 
   }
 

@@ -14,6 +14,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.DiscLauncher;
+import frc.robot.subsystems.DiscPusherMech;
+//import frc.robot.subsystems.DiscPusherMech;
 import frc.robot.subsystems.DriveTrain;
 //import frc.robot.subsystems.ExampleSubsystem;
 
@@ -28,8 +30,9 @@ public class Robot extends TimedRobot {
   
   public static DriveTrain driveTrain =  new DriveTrain();
   public static DiscLauncher launcher = new DiscLauncher();
+  public static DiscPusherMech discPush = new DiscPusherMech();
   //public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
-  public static OI m_oi;
+  public static OI m_oi = new OI();
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();

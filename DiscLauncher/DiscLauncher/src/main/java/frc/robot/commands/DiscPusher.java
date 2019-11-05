@@ -9,65 +9,59 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.subsystems.DiscPusherMech;
 
-public class Move extends Command {
-
-  double m_time;
-  double m_lSpeed;
-  double m_rSpeed;
-
-
-  public Move(double time, double lSpeed, double rSpeed) {
+public class DiscPusher extends Command {
+  int angleDistance = 0;
+  
+  
+  public DiscPusher() {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-    m_time = time;
-    m_lSpeed = -lSpeed;
-    m_rSpeed = rSpeed;
+    requires(Robot.discPush);
+  }
 
-
-
+  public DiscPusher(int distanceSet)
+  {
+    angleDistance = distanceSet;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
 
-    //Robot.driveTrain.ArcadeDrive(m_lSpeed, m_rSpeed);
-    // Robot.driveTrain.setLeftMotors(m_lSpeed);
-    // Robot.driveTrain.setRightMotors(-m_rSpeed);
-    //etTimeout(m_time);
     
+    Robot.discPush.pushForward(angleDistance);
+    
+    
+
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.driveTrain.ArcadeDrive(m_lSpeed, m_rSpeed);
-    // Robot.driveTrain.setLeftMotors(m_lSpeed);
-    // Robot.driveTrain.setRightMotors(-m_rSpeed);
-    setTimeout(m_time);
-    
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return isTimedOut();
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
 
-    Robot.driveTrain.ArcadeDrive(0, 0);
+      Robot.discPush.pushForward(0);
 
-    // Robot.driveTrain.setLeftMotors(0);
-    // Robot.driveTrain.setRightMotors(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+
+    Robot.discPush.pushForward(0);
+     end();
+
   }
 }

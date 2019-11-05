@@ -26,17 +26,34 @@ public class RobotMap {
   public static final int rightMotor2Channel = 5;
 
   public static final int discMotor = 6;
-  public static final double spinSpeedVar = 1;
+  public static final double spinSpeedVar = 0;
 
 
   public static final int joystickPort = 0;  //usb input port
   
-	public static final int leftStickInput = 1;  //check button values in drive station usb section
+	public static final int leftStickInput = 0;  //check button values in drive station usb section
   public static final int rightStickInput = 1;
   
-	public static final int ButtonX = 3;  //check button values in drive station usb section
-	public static final int ButtonY = 4;
-	
+	public static final int ButtonX = 3;  //Buttons confirmed
+  public static final int ButtonY = 4;
+  public static final int ButtonA = 1;
+  public static final int ButtonB = 2;
+  public static final int ButtonBack = 7;
+
+  public static final int RightBumper = 6;
+  public static final int LeftBumper = 5;
+
+  public static final int servoDisc = 1;
+
+  
+  public static final double testingSpeed = 0.55;
+  public static final double practiceSpeed = 0.75;
+  public static final double drivingSpeed = 0.75;
+  public static final double fullSpeed = 1;
+
+
+
+
 
   // If you are using multiple modules, make sure to define both the port
   // number and the module. For example you with a rangefinder:

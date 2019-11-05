@@ -19,9 +19,9 @@ public class MoveSequence extends CommandGroup {
     // addSequential(new Command2());
     // these will run in order.
 
-    addSequential(new Move(2, 0.5, 0.5));
-    addSequential(new Move(2, -0.5, -0.5));
-    addSequential(new Move(4, 1, -1));
+    addSequential(new Move(1, 0.5, 0));
+    addSequential(new Move(1, -0.5, 0));
+    addSequential(new Move(1, 0, 1));
 
 
     // To run multiple commands at the same time,

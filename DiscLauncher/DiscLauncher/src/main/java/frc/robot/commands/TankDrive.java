@@ -10,6 +10,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.OI;
 
 public class TankDrive extends Command {
   public TankDrive() {
@@ -25,11 +26,99 @@ public class TankDrive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double leftStickY = Robot.m_oi.GetDriverRawAxis(RobotMap.leftStickInput);
-    double rightStickY = Robot.m_oi.GetDriverRawAxis(RobotMap.rightStickInput);
+    
+    //Code implementing lower speed on button press
 
-    Robot.driveTrain.setLeftMotors(leftStickY * 0.5);  //would be a good idea to squar this var instead of 0.5 bc exponential sensativity
-    Robot.driveTrain.setRightMotors(rightStickY * 0.5);
+    // double TarsSpeed; 
+
+    // if (Robot.m_oi.leftBumper.get() == true) {
+
+    //     TarsSpeed = Robot.m_oi.GetDriverRawAxis(1) * RobotMap.testingSpeed;
+
+    // }
+
+    // else {
+
+    //     TarsSpeed = Robot.m_oi.GetDriverRawAxis(1) * (RobotMap.drivingSpeed + ((Robot.m_oi.GetDriverRawAxis(2)) * (1 - RobotMap.drivingSpeed)));
+
+    // }
+
+    // if (0.05 > TarsSpeed && TarsSpeed > -0.05) {
+
+    //     TarsSpeed = 0;
+
+    // }
+
+
+
+    // double TarsRotation;
+
+    // if (Robot.m_oi.rightBumper.get() == true) {
+
+    //     TarsRotation = Robot.m_oi.GetDriverRawAxis(4) * 0.55;
+
+    // }
+
+    // else {
+
+    //     TarsRotation = Robot.m_oi.GetDriverRawAxis(4) * RobotMap.practiceSpeed;
+
+    // }
+
+    // if (0.05 > TarsRotation && TarsRotation > -0.05) {
+
+    //     TarsRotation = 0;
+
+    // }
+
+    // Robot.driveTrain.ArcadeDrive(-TarsSpeed, TarsRotation);
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //double xSpeed = RobotMap.testingSpeed * Robot.m_oi.GetDriverRawAxis(1);
+
+
+
+    //working code starts here
+
+    //testing speed  -- uncomment this section during testing...turn off driving or other
+    double ySpeed = RobotMap.testingSpeed * Robot.m_oi.GetDriverRawAxis(0);
+    double xSpeed = RobotMap.testingSpeed * Robot.m_oi.GetDriverRawAxis(1);
+
+    Robot.driveTrain.ArcadeDrive(xSpeed, ySpeed);
+
+      // driving speed   --- uncomment code when driving speed is needed
+    // double ySpeed = RobotMap.drivingSpeed * Robot.m_oi.GetDriverRawAxis(0);
+    // double xSpeed = RobotMap.drivingSpeed * Robot.m_oi.GetDriverRawAxis(1);
+
+    // Robot.driveTrain.ArcadeDrive(xSpeed, ySpeed);
+
+
+
+    //working code ends here
+
+
+
+    
+    //ORIGINAL CODE
+    // double leftStickY = Robot.m_oi.GetDriverRawAxis(RobotMap.leftStickInput);
+    // double rightStickY = Robot.m_oi.GetDriverRawAxis(RobotMap.rightStickInput);
+
+    // Robot.driveTrain.setLeftMotors(leftStickY * 0.5);  //would be a good idea to squar this var instead of 0.5 bc exponential sensativity
+    // Robot.driveTrain.setRightMotors(rightStickY * 0.5);
+
+    
+
 
   }
 
@@ -42,15 +131,22 @@ public class TankDrive extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.driveTrain.setLeftMotors(0);
-    Robot.driveTrain.setRightMotors(0);
+    
+    Robot.driveTrain.ArcadeDrive(0, 0);
+
+
+    //ORIGINAL CODE
+    //Robot.driveTrain.setLeftMotors(0);
+    //Robot.driveTrain.setRightMotors(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
+    
+    Robot.driveTrain.ArcadeDrive(0, 0);
+    //end();
 
   }
 }
