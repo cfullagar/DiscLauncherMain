@@ -44,6 +44,7 @@ public class OI {
 
   public double GetDriverRawAxis(int axis)
   {
+    System.out.println(stick.getRawAxis(axis));
     return stick.getRawAxis(axis);
     //stick.getX();
     //stick.getY();

@@ -25,19 +25,17 @@ public class DriveTrain extends Subsystem {
 
   PWMVictorSPX leftMotor1 = new PWMVictorSPX(RobotMap.leftMotor1Channel);
   PWMVictorSPX leftMotor2 = new PWMVictorSPX(RobotMap.leftMotor2Channel);
+  //Grouping Left Motors
+    SpeedControllerGroup m_left = new SpeedControllerGroup(leftMotor1, leftMotor2);
+
+
   PWMVictorSPX rightMotor1 = new PWMVictorSPX(RobotMap.rightMotor1Channel);
   PWMVictorSPX rightMotor2 = new PWMVictorSPX(RobotMap.rightMotor2Channel);
+  //Grouping Right Motors
+    SpeedControllerGroup m_right = new SpeedControllerGroup(rightMotor1, rightMotor2);
 
-
-  //below is new code for adding arcade groups
-  SpeedControllerGroup m_right = new SpeedControllerGroup(rightMotor1, rightMotor2);
-  SpeedControllerGroup m_left = new SpeedControllerGroup(leftMotor1, leftMotor2);
-
-  
-
-
-  DifferentialDrive m_robotDrive = new DifferentialDrive(m_left, m_right);
-
+ //Creating the Differential Drive Train/Object
+  DifferentialDrive m_robotDrive = new DifferentialDrive(leftMotor1, rightMotor2);
 
 
 
